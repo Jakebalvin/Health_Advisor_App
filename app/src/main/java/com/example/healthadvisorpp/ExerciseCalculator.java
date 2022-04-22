@@ -46,7 +46,9 @@ public class ExerciseCalculator extends AppCompatActivity implements AdapterView
         Intent intent = getIntent();
         double weightkg = intent.getDoubleExtra("weightkg", 0);
 
-        if (spinnerposition == 3) {
+
+        /*else if (spinnerposition == 3)
+        {
             if (MPH <= 3.7) {
                 MPH *= 26.8;
                 caloriesburned = (.1 * MPH) + (1.8 * MPH) + 3.5;
@@ -55,13 +57,15 @@ public class ExerciseCalculator extends AppCompatActivity implements AdapterView
                 caloriesburned = (.2 * MPH) + (.9 * MPH) + 3.5;
                 caloriesburned = (caloriesburned * weightkg) / 200;
                 caloriesburned *= minutes;
-            }
+            }*/
+        if (spinnerposition != 3)
+            {
+                caloriesburned = (MET * 3.5 * weightkg / 200) * minutes;
         }
             TextView displaycaloriesburned = findViewById(R.id.caloriesburned);
             displaycaloriesburned.setVisibility(View.VISIBLE);
             displaycaloriesburned.setText(String.format("You have burned %.0f calories", caloriesburned));
     }
-
     public void returntohomepage(View v){
         Intent returntohomepage = new Intent(this, MainActivity.class);
         startActivity(returntohomepage);
@@ -71,18 +75,19 @@ public class ExerciseCalculator extends AppCompatActivity implements AdapterView
     public void onItemSelected(AdapterView<?> parent, View view, int position, long l) {
         EditText hiddeennumbereditview = findViewById(R.id.hiddeneditview);
         TextView hiddeennumbertextview = findViewById(R.id.hiddentextview);
+        spinnerposition = position;
         switch (position){
             case 1:
             case 2:
                 hiddeennumbereditview.setVisibility(View.GONE);
                 hiddeennumbertextview.setVisibility(View.GONE);
-                MET = 4.0;
+                MET = 3.8;
                 break;
             case 3:
-                hiddeennumbereditview.setVisibility(View.VISIBLE);
-                hiddeennumbertextview.setVisibility(View.VISIBLE);
-                MPH = Double.parseDouble(hiddeennumbereditview.getText().toString());
-                break;
+                //hiddeennumbereditview.setVisibility(View.VISIBLE);
+                //hiddeennumbertextview.setVisibility(View.VISIBLE);
+                //MPH = Double.parseDouble(hiddeennumbereditview.getText().toString());
+                //break;
         }
     }
 
