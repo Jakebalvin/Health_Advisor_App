@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Calendar">
+
+    <TextView
+        android:id="@+id/mon"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:text="Monday"
+        android:textSize="25dp"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/tues"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/monc"
+        android:layout_width="260dp"
+        android:layout_height="50dp"
+        android:background="@null"
+        android:gravity="center"
+        android:hint="# of carbs you'll eat"
+        android:textSize="25dp"
+        android:textColor="@color/black"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/mon"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tues"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:text="Tuesday"
+        android:textColor="@color/black"
+        android:textSize="25dp"
+        app:layout_constraintBottom_toTopOf="@+id/wed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mon" />
+
+    <EditText
+        android:id="@+id/Tuesc"
+        android:textColor="@color/black"
+        android:layout_width="260dp"
+        android:layout_height="50dp"
+        android:background="@null"
+        android:gravity="center"
+        android:hint="# of carbs you'll eat"
+        android:textSize="25dp"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/tues"
+        app:layout_constraintTop_toBottomOf="@+id/monc" />
+
+    <TextView
+        android:id="@+id/wed"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:textColor="@color/black"
+        android:gravity="center"
+        android:text="Wednesday"
+        android:textSize="25dp"
+        app:layout_constraintBottom_toTopOf="@+id/thur"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tues" />
+
+    <EditText
+        android:id="@+id/wedc"
+        android:layout_width="260dp"
+        android:layout_height="50dp"
+        android:background="@null"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:inputType="number"
+        android:hint="# of carbs you'll eat"
+        android:textSize="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/wed"
+        app:layout_constraintTop_toBottomOf="@+id/Tuesc" />
+
+    <TextView
+        android:id="@+id/thur"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:textColor="@color/black"
+        android:gravity="center"
+        android:text="Thursday"
+        android:textSize="25dp"
+        app:layout_constraintBottom_toTopOf="@+id/fri"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/wed" />
+
+    <EditText
+        android:id="@+id/thurc"
+        android:layout_width="260dp"
+        android:layout_height="50dp"
+        android:background="@null"
+        android:textColor="@color/black"
+        android:gravity="center"
+        android:inputType="number"
+        android:hint="# of carbs you'll eat"
+        android:textSize="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/thur"
+        app:layout_constraintTop_toBottomOf="@+id/wedc" />
+
+    <TextView
+        android:id="@+id/fri"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:text="Friday"
+        android:textColor="@color/black"
+        android:textSize="25dp"
+        app:layout_constraintBottom_toTopOf="@+id/sat"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/thur" />
+
+    <EditText
+        android:id="@+id/fric"
+        android:layout_width="260dp"
+        android:layout_height="50dp"
+        android:background="@null"
+        android:textColor="@color/black"
+        android:gravity="center"
+        android:hint="# of carbs you'll eat"
+        android:textSize="25dp"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/fri"
+        app:layout_constraintTop_toBottomOf="@+id/thurc" />
+
+    <TextView
+        android:id="@+id/sat"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:textColor="@color/black"
+        android:gravity="center"
+        android:text="Saturday"
+        android:textSize="25dp"
+        app:layout_constraintBottom_toTopOf="@+id/sun"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fri" />
+
+    <EditText
+        android:id="@+id/satc"
+        android:layout_width="260dp"
+        android:layout_height="50dp"
+        android:textColor="@color/black"
+        android:background="@null"
+        android:gravity="center"
+        android:hint="# of carbs you'll eat"
+        android:textSize="25dp"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/sat"
+        app:layout_constraintTop_toBottomOf="@+id/fric" />
+
+    <TextView
+        android:id="@+id/sun"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:textColor="@color/black"
+        android:layout_marginBottom="382dp"
+        android:gravity="center"
+        android:text="Sunday"
+        android:textSize="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sat" />
+
+    <EditText
+        android:id="@+id/sunc"
+        android:layout_width="260dp"
+        android:layout_height="50dp"
+        android:background="@null"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:hint="# of carbs you'll eat"
+        android:textSize="25dp"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/sun"
+        app:layout_constraintTop_toBottomOf="@+id/satc" />
+
+    <TextView
+        android:id="@+id/gainedorlost"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginTop="40dp"
+        android:gravity="center"
+        android:text="Please eneter the amount of calories you will eat each day"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/calcbtn" />
+
+    <Button
+        android:id="@+id/calcbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="396dp"
+        android:onClick="calc"
+        android:text="Calculate"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

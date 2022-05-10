@@ -1,81 +1,61 @@
 package com.example.healthadvisorpp;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 
-import android.Manifest;
-import android.content.Intent;
-import android.content.pm.PackageManager;
+import android.content.Context;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.os.Build;
-import android.view.View;
-import android.view.WindowManager;
 import android.widget.TextView;
 import android.os.Bundle;
+import android.widget.Toast;
 
 public class StepCounter extends AppCompatActivity implements SensorEventListener {
 
-    TextView displaysteps;
-    private SensorManager sensorManager;
-    Sensor stepcountersensor;
-    boolean isSensorPresent;
-    int stepcount = 0;
+    TextView stepstaken;
+    SensorManager sensorManager;
+    boolean run = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_step_counter);
 
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-        displaysteps = findViewById(R.id.stepstaken);
-        sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
-
-        if(sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER)!=null){
-            stepcountersensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
-            isSensorPresent = true;
-        }
-        else
-        {
-            displaysteps.setText("Counter Sensor is not Present");
-            isSensorPresent = false;
-        }
+        stepstaken = findViewById(R.id.stepstaken);
+        sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 
     }
 
-    public void ReturnHome(View v) {
-        Intent returnhome = new Intent(this, MainActivity.class);
-        startActivity(returnhome);
+    @Override
+    protected void onResume(){
+        super.onResume();
+        run = true;
+        Sensor count = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
+
+        if (count != null){
+            sensorManager.registerListener(this, count, SensorManager.SENSOR_DELAY_UI);
+        }
+        else{
+            Toast.makeText(this, "Did not find step senor in your phone", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    protected void onPause(){
+        super.onPause();
+        run = false;
     }
 
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
-        if(sensorEvent.sensor == stepcountersensor)
-        {
-            stepcount = (int) sensorEvent.values[0];
-            displaysteps.setText(String.valueOf(stepcount));
+        if(run){
+            stepstaken.setText(String.valueOf(sensorEvent.values[0]));
         }
     }
 
     @Override
     public void onAccuracyChanged(Sensor sensor, int i) {
 
-    }
-
-    @Override
-    protected void onPostResume() {
-        super.onPostResume();
-        if(sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER)!=null)
-            sensorManager.registerListener(this, stepcountersensor, SensorManager.SENSOR_DELAY_NORMAL);
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        if(sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER)!=null)
-            sensorManager.unregisterListener(this, stepcountersensor);
     }
 }

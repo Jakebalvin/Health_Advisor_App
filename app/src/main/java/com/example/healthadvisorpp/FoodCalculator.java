@@ -36,9 +36,4 @@ public class FoodCalculator extends AppCompatActivity {
         displaycalories.setText("");
         totalcalories = 0;
     }
-
-    public void ReturnHome(View v) {
-        Intent returnhome = new Intent(this, MainActivity.class);
-        startActivity(returnhome);
-    }
 }

@@ -2,6 +2,7 @@ package com.example.healthadvisorpp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.content.Intent;
@@ -42,15 +43,12 @@ public class MainActivity extends AppCompatActivity {
 
         //display weight
         double weight = intent.getDoubleExtra("weight", 0);
-        if(positionspinnerweight == 0)
-        {
+        if (positionspinnerweight == 0) {
             weightlbs = weight;
             weightkg = weightlbs / 2.205;
-        }
-        else if(positionspinnerweight == 1)
-        {
+        } else if (positionspinnerweight == 1) {
             weightkg = weight;
-            weightlbs = weightkg *2.205;
+            weightlbs = weightkg * 2.205;
         }
         TextView displayweight = findViewById(R.id.TextViewWeight);
         if (weight == 0)
@@ -60,13 +58,10 @@ public class MainActivity extends AppCompatActivity {
 
         //display height
         double height = intent.getDoubleExtra("height", 0);
-        if(positionspinnerheight == 0)
-        {
+        if (positionspinnerheight == 0) {
             heightin = height;
             heightcm = heightin * 2.54;
-        }
-        else if(positionspinnerheight == 1)
-        {
+        } else if (positionspinnerheight == 1) {
             heightcm = height;
             heightin = heightcm / 2.54;
         }
@@ -78,52 +73,68 @@ public class MainActivity extends AppCompatActivity {
 
         //display gender
         TextView displaygender = findViewById(R.id.TextViewGender);
-        if(positionspinnergender == 0)
-          gender = "Male";
-        else if(positionspinnergender == 1)
-          gender = "Female";
+        if (positionspinnergender == 0)
+            gender = "Male";
+        else if (positionspinnergender == 1)
+            gender = "Female";
         else
-          gender = "Not Entered";
+            gender = "Not Entered";
         displaygender.setText("Gender: " + gender);
 
         //calculate and display BMI and BMR
-        BMI = weightkg / Math.pow(heightcm/ 100, 2);
-        if(gender == "Male")
-            BMR = (10 * weightkg) + (6.25 * heightcm) -(5 * age) + 5;
-        else if(gender =="Female")
-            BMR = (10 * weightkg) + (6.25 * heightcm) -(5 * age) - 161;
+        BMI = weightkg / Math.pow(heightcm / 100, 2);
+        if (gender == "Male")
+            BMR = (10 * weightkg) + (6.25 * heightcm) - (5 * age) + 5;
+        else if (gender == "Female")
+            BMR = (10 * weightkg) + (6.25 * heightcm) - (5 * age) - 161;
         TextView displayBMI = findViewById(R.id.TextViewBMI);
-        if(weight == 0)
+        if (weight == 0)
             displayBMI.setText("BMI: Can't Calculate");
-            else
+        else
             displayBMI.setText(String.format("BMI: %.1f", BMI));
         TextView displayBMR = findViewById(R.id.TextViewBMR);
-        if(weight == 0)
+        if (weight == 0)
             displayBMR.setText("You burn X calories a day");
         else
             displayBMR.setText(String.format("You burn %.0f calories a day", BMR));
 
     }
+
     //buttons to go to different activities
-    public void gotoexercisecalc(View v){
+    public void gotoexercisecalc(View v) {
         Intent exercisecalc = new Intent(this, ExerciseCalculator.class);
         exercisecalc.putExtra("weightkg", weightkg);
         startActivity(exercisecalc);
     }
-    public void gotoworkoutroutines(View v){
+
+    public void gotoworkoutroutines(View v) {
         Intent workoutroutines = new Intent(this, WorkoutRoutines.class);
         startActivity(workoutroutines);
     }
-    public void gotofoodcalc(View v){
+
+    public void gotofoodcalc(View v) {
         Intent foodcalc = new Intent(this, FoodCalculator.class);
         startActivity(foodcalc);
     }
-    public void gotostepcounter(View v){
+
+    public void gotostepcounter(View v) {
         Intent stepcounter = new Intent(this, StepCounter.class);
         startActivity(stepcounter);
     }
-    public void EditProfile(View v){
-        Intent editprofile = new Intent (this, profile.class);
+
+    public void EditProfile(View v) {
+        Intent editprofile = new Intent(this, profile.class);
         startActivity(editprofile);
     }
+
+    public void gotosearchcalories(View v) {
+        Intent Search = new Intent(this, Search.class);
+        startActivity(Search);
     }
+
+    public void gotocalendar(View v) {
+        Intent calendar = new Intent(this, Calendar.class);
+        calendar.putExtra("BMR", BMR);
+        startActivity(calendar);
+    }
+}
